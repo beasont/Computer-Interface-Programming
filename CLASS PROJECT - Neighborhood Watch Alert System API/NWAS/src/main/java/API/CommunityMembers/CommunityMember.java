@@ -1,4 +1,4 @@
-package com.NWAS.API.CommunityMembers;
+package API.CommunityMembers;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;

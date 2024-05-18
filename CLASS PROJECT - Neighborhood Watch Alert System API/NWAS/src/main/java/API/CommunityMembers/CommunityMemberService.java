@@ -1,4 +1,4 @@
-package com.NWAS.API.CommunityMembers;
+package API.CommunityMembers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

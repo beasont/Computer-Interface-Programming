@@ -1,6 +1,6 @@
-package com.NWAS.API.CommunityMembers;
+package API.CommunityMembers;
 
-import com.NWAS.API.Alerts.AlertService;
+import API.Alerts.AlertService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

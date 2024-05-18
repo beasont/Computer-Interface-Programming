@@ -1,0 +1,164 @@
+####################################################################################
+// NEIGHBORHOOD ALERT COMMANDS
+####################################################################################
+// VIEW RECENT SAFETY ALERTS
+GET http://localhost:7777/api/alerts
+###
+// VIEW SAFETY TIPS
+GET http://localhost:7777/api/alerts/tips
+###
+// VIEW ALERTS BY TYPE
+GET http://localhost:7777/api/alerts?type=Weather
+###
+
+// ADD CUSTOM SAFETY ALERT
+POST http://localhost:7777/api/alerts/add
+Content-Type: application/json
+
+{
+  "safetyTip": "Ensure all doors and windows are locked at night.",
+  "alertType": "Security"
+}
+###
+// ADD MULTIPLE SAFETY ALERTS
+POST http://localhost:7777/api/alerts/add/multiple
+Content-Type: application/json
+
+[
+  {
+    "safetyTip": "Keep emergency numbers handy.",
+    "alertType": "General"
+  },
+  {
+    "safetyTip": "Avoid walking alone at night.",
+    "alertType": "Security"
+  }
+]
+
+###
+
+// UPDATE SAFETY ALERT DETAILS
+PUT http://localhost:7777/api/alerts/update/2
+Content-Type: application/json
+
+{
+  "safetyTip": "Stay away from fallen power lines.",
+  "alertType": "Weather, Severe Hurricane Warning"
+}
+###
+// UPDATE MULTIPLE SAFETY ALERT DETAILS
+PUT http://localhost:7777/api/alerts/update/multiple
+Content-Type: application/json
+
+[
+  {
+    "alertID": 1,
+    "safetyTip": "Check weather forecasts before planning outdoor activities.",
+    "alertType": "Weather"
+  },
+  {
+    "alertID": 2,
+    "safetyTip": "Keep a first aid kit in your home and car.",
+    "alertType": "Health"
+  }
+]
+
+###
+
+// REMOVE AN OUTDATED SAFETY ALERT
+DELETE http://localhost:7777/api/alerts/1
+###
+// BATCH-DELETE MULTIPLE OUTDATED SAFETY ALERTS
+DELETE http://localhost:7777/api/alerts/delete/multiple
+Content-Type: application/json
+
+[2, 3, 4, 5]
+
+###
+
+####################################################################################
+// COMMUNITY MEMBER COMMANDS
+####################################################################################
+// MEMBER LIST
+GET http://localhost:7777/api/members
+###
+// SHOW ONE COMMUNITY MEMBER
+GET http://localhost:7777/api/members/1
+###
+// VIEW COMMUNITY MEMBERS BY AGE RANGE
+GET http://localhost:7777/api/members?minAge=20&maxAge=40
+###
+
+// REGISTER A NEW COMMUNITY MEMBER
+POST http://localhost:7777/api/members/add
+Content-Type: application/json
+
+{
+  "name": "John",
+  "surname": "Doe",
+  "age": 30,
+  "addressNumber": "123",
+  "phoneNumber": "123-456-7890",
+  "hasLivedHereSince": "2024-06-15"
+}
+###
+// REGISTER MULTIPLE NEW COMMUNITY MEMBERS
+POST http://localhost:7777/api/members/add/multiple
+Content-Type: application/json
+
+[
+  {
+    "name": "Jane",
+    "surname": "Doe",
+    "age": 28,
+    "addressNumber": "124",
+    "phoneNumber": "123-456-7891",
+    "hasLivedHereSince": "2024-06-16"
+  },
+  {
+    "name": "Bob",
+    "surname": "Smith",
+    "age": 35,
+    "addressNumber": "125",
+    "phoneNumber": "123-456-7892",
+    "hasLivedHereSince": "2024-06-17"
+  }
+]
+
+###
+
+// UPDATE A MEMBER'S CONTACT INFORMATION
+PUT http://localhost:7777/api/members/update/2
+Content-Type: application/json
+
+{
+  "phoneNumber": "987-654-3210"
+}
+###
+// UPDATE CONTACT INFORMATION FOR MULTIPLE COMMUNITY MEMBERS
+PUT http://localhost:7777/api/members/update/multiple
+Content-Type: application/json
+
+[
+  {
+    "id": 3,
+    "phoneNumber": "987-654-3211"
+  },
+  {
+    "id": 4,
+    "phoneNumber": "987-654-3212"
+  }
+]
+
+###
+
+// UNREGISTER A COMMUNITY MEMBER BY ID
+DELETE http://localhost:7777/api/members/delete/1
+###
+// UNREGISTER MULTIPLE COMMUNITY MEMBERS BY ID
+DELETE http://localhost:7777/api/members/delete/multiple
+Content-Type: application/json
+
+["1", "5", "8", "9"]
+
+###

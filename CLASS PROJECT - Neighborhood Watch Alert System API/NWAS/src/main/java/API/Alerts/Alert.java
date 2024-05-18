@@ -1,4 +1,4 @@
-package com.NWAS.API.Alerts;
+package API.Alerts;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonInclude;

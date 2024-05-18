@@ -1,4 +1,4 @@
-package com.NWAS.API.Alerts;
+package API.Alerts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -40,15 +40,22 @@ public class AlertConfig {
 
     // helper method that returns a custom safety tip based on the weather alert
     private String customSafetyTip(String alertType) {
-        return switch (alertType) {
-            case AlertType.TORNADO_WARNING -> "Take cover immediately, a tornado has been sighted in your area!";
-            case AlertType.FLASH_FLOOD_WARNING -> "Be cautious of flooding, heavy rain may lead to flash floods!";
-            case AlertType.BLIZZARD_WARNING -> "Prepare for extreme cold and heavy snowfall, a blizzard is forecasted!";
-            case AlertType.SEVERE_THUNDERSTORM_WARNING -> "Seek shelter indoors, a severe thunderstorm is approaching!";
-            case AlertType.EARTHQUAKE_WARNING -> "There is an active earthquake in your area, seek shelter and avoid all operations of any vehicles!";
-            default -> "Unknown Weather Alert";
-        };
+        switch (alertType) {
+            case AlertType.TORNADO_WARNING:
+                return "Take cover immediately, a tornado has been sighted in your area!";
+            case AlertType.FLASH_FLOOD_WARNING:
+                return "Be cautious of flooding, heavy rain may lead to flash floods!";
+            case AlertType.BLIZZARD_WARNING:
+                return "Prepare for extreme cold and heavy snowfall, a blizzard is forecasted!";
+            case AlertType.SEVERE_THUNDERSTORM_WARNING:
+                return "Seek shelter indoors, a severe thunderstorm is approaching!";
+            case AlertType.EARTHQUAKE_WARNING:
+                return "There is an active earthquake in your area, seek shelter and avoid all operations of any vehicles!";
+            default:
+                return "Unknown Weather Alert";
+        }
     }
+
 
     // a static nested class containing constant strings for different weather-type alerts
     static class AlertType {

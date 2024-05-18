@@ -1,6 +1,6 @@
-package com.NWAS.API.Alerts;
+package API.Alerts;
 
-import com.NWAS.API.CommunityMembers.CommunityMember;
+import API.CommunityMembers.CommunityMember;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;

@@ -1,4 +1,4 @@
-package com.NWAS.API;
+package API;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
