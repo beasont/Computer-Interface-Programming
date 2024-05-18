@@ -1,0 +1,71 @@
+####################################################################################
+// NEIGHBORHOOD ALERT COMMANDS
+####################################################################################
+////// CREATE
+// Insert a new safety alert
+INSERT INTO ALERT (SAFETY_TIP, ALERT_TYPE) VALUES ('Ensure all doors and windows are locked at night.', 'Security');
+###
+// Insert another new safety alert
+INSERT INTO ALERT (SAFETY_TIP, ALERT_TYPE) VALUES ('Do not leave valuables in your car.', 'Theft Prevention');
+###
+####################################################################################
+////// READ
+// Retrieve all safety alerts
+SELECT * FROM ALERT;
+###
+// Retrieve safety alerts by type
+SELECT * FROM ALERT WHERE ALERT_TYPE = 'Weather, Severe Thunderstorm Warning';
+###
+####################################################################################
+////// UPDATE
+// Update a specific safety alert's details
+UPDATE ALERT SET SAFETY_TIP = 'Stay away from fallen power lines.', ALERT_TYPE = 'Weather, Severe Hurricane Warning' WHERE ALERTID = 1;
+###
+// Update another specific safety alert's type
+UPDATE ALERT SET ALERT_TYPE = 'Weather, Severe Thunderstorm Warning', WHERE ALERTID = 1;
+###
+####################################################################################
+////// DELETE
+// Delete a specific safety alert by ID
+DELETE FROM ALERT WHERE ALERTID = 1;
+###
+// Delete a specific safety alert by TYPE
+DELETE FROM ALERT WHERE ALERT_TYPE = 'Weather,SevereThunderstormWarning';
+###
+####################################################################################
+
+####################################################################################
+// COMMUNITY MEMBER COMMANDS
+####################################################################################
+////// CREATE
+// Create a new community member
+INSERT INTO COMMUNITY_MEMBER (ID, NAME, SURNAME, AGE, ADDRESS_NUMBER, PHONE_NUMBER, HAS_LIVED_HERE_SINCE) VALUES (11, 'John', 'Doe', 30, '123', '123-456-7890', '2024-06-15');
+###
+// Create another community member
+INSERT INTO COMMUNITY_MEMBER (ID, NAME, SURNAME, AGE, ADDRESS_NUMBER, PHONE_NUMBER, HAS_LIVED_HERE_SINCE) VALUES (12, 'Jane', 'Smith', 40, '456', '987-654-3210', '2015-04-10');
+###
+####################################################################################
+////// READ
+// View all community members
+SELECT * FROM COMMUNITY_MEMBER;
+###
+// View specific member by ID
+SELECT * FROM COMMUNITY_MEMBER WHERE ID = 1;
+###
+####################################################################################
+////// UPDATE
+// Update a member's phone number
+UPDATE COMMUNITY_MEMBER SET PHONENUMBER = '987-654-3210' WHERE ID = 1;
+###
+// Update a member's address number
+UPDATE COMMUNITY_MEMBER SET ADDRESSNUMBER = '789' WHERE ID = 2;
+###
+####################################################################################
+////// DELETE
+// Unregister a community member
+DELETE FROM COMMUNITY_MEMBER WHERE ID = 1;
+###
+// Batch-delete several community members
+DELETE FROM COMMUNITY_MEMBER WHERE ID IN (1, 2, 3, 4, 5);
+###
+####################################################################################
