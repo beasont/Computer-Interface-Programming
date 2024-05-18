@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Alert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long alertID; // primary key, a unique for each alert
+    private Long alertID; // primary key, a unique ID for each alert
     private String safetyTip; // for text-based safety tips that correspond to the alert
     private String alertType; // for storing the type of alert
     private String dateTime; // for the date and time of the alert

@@ -38,56 +38,82 @@ public class CommunityMemberService {
         if (communityMember == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Community member object is null");
         }
-        // set the 'hasLivedHereSince' attribute to a randomly generated date
-        communityMember.setHasLivedHereSince(generateRandomDate());
-        return communityMemberRepository.save(communityMember);
+        try {
+            // set the 'hasLivedHereSince' attribute to a randomly generated date
+            communityMember.setHasLivedHereSince(generateRandomDate());
+            return communityMemberRepository.save(communityMember);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to add community member");
+        }
     }
 
     public List<CommunityMember> getAllCommunityMembers() {
-        return communityMemberRepository.findAll();
+        try {
+            return communityMemberRepository.findAll();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Community members not found");
+        }
     }
 
     public List<CommunityMember> getCommunityMembersByAgeRange(int minAge, int maxAge) {
-        return communityMemberRepository.findAll().stream()
-                .filter(member -> member.getAge() >= minAge && member.getAge() <= maxAge)
-                .collect(Collectors.toList());
+        try {
+            return communityMemberRepository.findAll().stream()
+                    .filter(member -> member.getAge() >= minAge && member.getAge() <= maxAge)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Community members not found in the specified age range");
+        }
     }
 
     public CommunityMember getCommunityMemberById(String id) {
-        return communityMemberRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Community member not found with ID: " + id));
+        try {
+            return communityMemberRepository.findById(id)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Community member not found with ID: " + id));
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Community member not found with ID: " + id);
+        }
     }
 
     public CommunityMember updateCommunityMember(String id, CommunityMember updatedCommunityMember) {
-        CommunityMember existingCommunityMember = getCommunityMemberById(id);
-        if (updatedCommunityMember == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Updated community member details were not provided");
-        }
-        if (updatedCommunityMember.getName() != null) {
-            existingCommunityMember.setName(updatedCommunityMember.getName());
-        }
-        if (updatedCommunityMember.getSurname() != null) {
-            existingCommunityMember.setSurname(updatedCommunityMember.getSurname());
-        }
-        if (updatedCommunityMember.getAge() > 0) {
-            existingCommunityMember.setAge(updatedCommunityMember.getAge());
-        }
-        if (updatedCommunityMember.getAddressNumber() != null) {
-            existingCommunityMember.setAddressNumber(updatedCommunityMember.getAddressNumber());
-        }
-        if (updatedCommunityMember.getPhoneNumber() != null) {
-            existingCommunityMember.setPhoneNumber(updatedCommunityMember.getPhoneNumber());
-        }
-        if (updatedCommunityMember.getHasLivedHereSince() != null) {
-            existingCommunityMember.setHasLivedHereSince(updatedCommunityMember.getHasLivedHereSince());
-        }
+        try {
+            CommunityMember existingCommunityMember = getCommunityMemberById(id);
+            if (updatedCommunityMember == null) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Updated community member details were not provided");
+            }
+            if (updatedCommunityMember.getName() != null) {
+                existingCommunityMember.setName(updatedCommunityMember.getName());
+            }
+            if (updatedCommunityMember.getSurname() != null) {
+                existingCommunityMember.setSurname(updatedCommunityMember.getSurname());
+            }
+            if (updatedCommunityMember.getAge() > 0) {
+                existingCommunityMember.setAge(updatedCommunityMember.getAge());
+            }
+            if (updatedCommunityMember.getAddressNumber() != null) {
+                existingCommunityMember.setAddressNumber(updatedCommunityMember.getAddressNumber());
+            }
+            if (updatedCommunityMember.getPhoneNumber() != null) {
+                existingCommunityMember.setPhoneNumber(updatedCommunityMember.getPhoneNumber());
+            }
+            if (updatedCommunityMember.getHasLivedHereSince() != null) {
+                existingCommunityMember.setHasLivedHereSince(updatedCommunityMember.getHasLivedHereSince());
+            }
 
-        return communityMemberRepository.save(existingCommunityMember);
+            return communityMemberRepository.save(existingCommunityMember);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to update community member with ID: " + id);
+        }
     }
 
-
     public void deleteCommunityMember(String id) {
-        communityMemberRepository.deleteById(id);
+        try {
+            if (!communityMemberRepository.existsById(id)) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Community member not found with ID: " + id);
+            }
+            communityMemberRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to delete community member with ID: " + id);
+        }
     }
 
     // generates a random date representing 'has lived here since'
@@ -119,24 +145,42 @@ public class CommunityMemberService {
     }
 
     public List<CommunityMember> addMultipleCommunityMembers(List<CommunityMember> members) {
-        return communityMemberRepository.saveAll(members);
+        try {
+            return communityMemberRepository.saveAll(members);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to add multiple community members");
+        }
     }
 
     public List<CommunityMember> updateMultipleCommunityMembers(List<CommunityMember> members) {
-        List<CommunityMember> updatedMembers = new ArrayList<>();
-        for (CommunityMember member : members) {
-            Optional<CommunityMember> existingMemberOptional = communityMemberRepository.findById(String.valueOf(member.getId()));
-            if (existingMemberOptional.isPresent()) {
-                CommunityMember existingMember = existingMemberOptional.get();
-                existingMember.setPhoneNumber(member.getPhoneNumber());
-                updatedMembers.add(communityMemberRepository.save(existingMember));
+        try {
+            List<CommunityMember> updatedMembers = new ArrayList<>();
+            for (CommunityMember member : members) {
+                Optional<CommunityMember> existingMemberOptional = communityMemberRepository.findById(String.valueOf(member.getId()));
+                if (existingMemberOptional.isPresent()) {
+                    CommunityMember existingMember = existingMemberOptional.get();
+                    existingMember.setPhoneNumber(member.getPhoneNumber());
+                    updatedMembers.add(communityMemberRepository.save(existingMember));
+                } else {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Community member not found with ID: " + member.getId());
+                }
             }
+            return updatedMembers;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to update multiple community members");
         }
-        return updatedMembers;
     }
 
-
     public void deleteMultipleCommunityMembers(List<String> ids) {
-        ids.forEach(communityMemberRepository::deleteById);
+        try {
+            ids.forEach(id -> {
+                if (!communityMemberRepository.existsById(id)) {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Community member not found with ID: " + id);
+                }
+                communityMemberRepository.deleteById(id);
+            });
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to delete multiple community members");
+        }
     }
 }
