@@ -2,17 +2,17 @@
 // NEIGHBORHOOD ALERT COMMANDS
 ####################################################################################
 // VIEW RECENT SAFETY ALERTS
-GET https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/alerts
+GET https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/alerts
 ###
 // VIEW SAFETY TIPS
-GET https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/alerts/tips
+GET https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/alerts/tips
 ###
 // VIEW ALERTS BY TYPE
-GET https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/alerts?type=Weather
+GET https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/alerts?type=Weather
 ###
 
 // ADD CUSTOM SAFETY ALERT
-POST https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/alerts/add
+POST https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/alerts/add
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 ###
 // ADD MULTIPLE SAFETY ALERTS
-POST https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/alerts/add/multiple
+POST https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/alerts/add/multiple
 Content-Type: application/json
 
 [
@@ -38,7 +38,7 @@ Content-Type: application/json
 ###
 
 // UPDATE SAFETY ALERT DETAILS
-PUT https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/alerts/update/2
+PUT https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/alerts/update/2
 Content-Type: application/json
 
 {
@@ -47,7 +47,7 @@ Content-Type: application/json
 }
 ###
 // UPDATE MULTIPLE SAFETY ALERT DETAILS
-PUT https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/alerts/update/multiple
+PUT https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/alerts/update/multiple
 Content-Type: application/json
 
 [
@@ -66,10 +66,10 @@ Content-Type: application/json
 ###
 
 // REMOVE AN OUTDATED SAFETY ALERT
-DELETE https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/alerts/1
+DELETE https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/alerts/1
 ###
 // BATCH-DELETE MULTIPLE OUTDATED SAFETY ALERTS
-DELETE https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/alerts/delete/multiple
+DELETE https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/alerts/delete/multiple
 Content-Type: application/json
 
 [2, 3, 4, 5]
@@ -80,17 +80,17 @@ Content-Type: application/json
 // COMMUNITY MEMBER COMMANDS
 ####################################################################################
 // MEMBER LIST
-GET https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/members
+GET https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/members
 ###
 // SHOW ONE COMMUNITY MEMBER
-GET https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/members/1
+GET https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/members/1
 ###
 // VIEW COMMUNITY MEMBERS BY AGE RANGE
-GET https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/members?minAge=20&maxAge=40
+GET https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/members?minAge=20&maxAge=40
 ###
 
 // REGISTER A NEW COMMUNITY MEMBER
-POST https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/members/add
+POST https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/members/add
 Content-Type: application/json
 
 {
@@ -103,7 +103,7 @@ Content-Type: application/json
 }
 ###
 // REGISTER MULTIPLE NEW COMMUNITY MEMBERS
-POST https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/members/add/multiple
+POST https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/members/add/multiple
 Content-Type: application/json
 
 [
@@ -128,7 +128,7 @@ Content-Type: application/json
 ###
 
 // UPDATE A MEMBER'S CONTACT INFORMATION
-PUT https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/members/update/2
+PUT https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/members/update/2
 Content-Type: application/json
 
 {
@@ -136,7 +136,7 @@ Content-Type: application/json
 }
 ###
 // UPDATE CONTACT INFORMATION FOR MULTIPLE COMMUNITY MEMBERS
-PUT https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/members/update/multiple
+PUT https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/members/update/multiple
 Content-Type: application/json
 
 [
@@ -153,10 +153,10 @@ Content-Type: application/json
 ###
 
 // UNREGISTER A COMMUNITY MEMBER BY ID
-DELETE https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/members/delete/1
+DELETE https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/members/delete/1
 ###
 // UNREGISTER MULTIPLE COMMUNITY MEMBERS BY ID
-DELETE https://nwas-spring-app-20240518234544.delightfulwave-f59f0790.eastus.azurecontainerapps.io/api/members/delete/multiple
+DELETE https://nwas-spring-app-20240523145728.delightfulwave-f59f0790.eastus.azurecontainerapps.io//api/members/delete/multiple
 Content-Type: application/json
 
 ["1", "5", "8", "9"]

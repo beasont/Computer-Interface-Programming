@@ -2,6 +2,7 @@ package API.Alerts;
 
 import API.CommunityMembers.CommunityMember;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
@@ -41,23 +42,25 @@ public class AlertService {
 
     // retrieve all alerts from the repository
     public List<Alert> getAllAlerts() {
-        try {
-            return alertRepository.findAll();
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Alerts not found");
+        List<Alert> alerts = alertRepository.findAll();
+        if (alerts.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No alerts found");
         }
+        return alerts;
     }
 
     // create a new alert
-    public Alert createAlert(Alert alert) {
+    public ResponseEntity<Alert> createAlert(Alert alert) {
         try {
             // set the current date and time
             alert.setDateTime(alert.getDateTime());
-            return alertRepository.save(alert);
+            Alert createdAlert = alertRepository.save(alert);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdAlert);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to create alert");
         }
     }
+
 
     // retrieve all safety tips from the alerts
     public List<String> getSafetyTips() {

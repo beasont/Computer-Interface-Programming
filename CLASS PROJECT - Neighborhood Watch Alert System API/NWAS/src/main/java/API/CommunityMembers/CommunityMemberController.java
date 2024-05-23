@@ -52,11 +52,11 @@ public class CommunityMemberController {
         return new ResponseEntity<>(updatedCommunityMember, HttpStatus.OK);
     }
 
-    // endpoint to delete a specific community member by ID
+    // endpoint to delete a community member by ID
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteCommunityMember(@PathVariable("id") String id) {
+    public ResponseEntity<Void> deleteCommunityMember(@PathVariable String id) {
         communityMemberService.deleteCommunityMember(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.noContent().build();
     }
 
     // endpoint to register multiple new community members

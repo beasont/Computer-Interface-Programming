@@ -1,6 +1,8 @@
 package API.CommunityMembers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
@@ -48,11 +50,11 @@ public class CommunityMemberService {
     }
 
     public List<CommunityMember> getAllCommunityMembers() {
-        try {
-            return communityMemberRepository.findAll();
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Community members not found");
+        List<CommunityMember> members = communityMemberRepository.findAll();
+        if (members.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No community members found");
         }
+        return members;
     }
 
     public List<CommunityMember> getCommunityMembersByAgeRange(int minAge, int maxAge) {
@@ -106,13 +108,13 @@ public class CommunityMemberService {
     }
 
     public void deleteCommunityMember(String id) {
+        if (!communityMemberRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Community member not found with ID: " + id);
+        }
         try {
-            if (!communityMemberRepository.existsById(id)) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Community member not found with ID: " + id);
-            }
             communityMemberRepository.deleteById(id);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to delete community member with ID: " + id);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to delete community member with ID: " + id);
         }
     }
 

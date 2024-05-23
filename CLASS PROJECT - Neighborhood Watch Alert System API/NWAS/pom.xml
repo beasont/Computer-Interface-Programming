@@ -8,7 +8,7 @@
 		<version>3.3.0-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.NWAS</groupId>
+	<groupId>NWAS</groupId>
 	<artifactId>NWAS</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>NWAS</name>

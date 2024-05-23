@@ -38,7 +38,7 @@ Content-Type: application/json
 ###
 
 // UPDATE SAFETY ALERT DETAILS
-PUT http://localhost:5443/api/alerts/update/2
+PUT http://localhost:5443/api/alerts/update/1
 Content-Type: application/json
 
 {
@@ -72,7 +72,7 @@ DELETE http://localhost:5443/api/alerts/1
 DELETE http://localhost:5443/api/alerts/delete/multiple
 Content-Type: application/json
 
-[2, 3, 4, 5]
+[2, 3, 4, 5, 8]
 
 ###
 
@@ -128,7 +128,7 @@ Content-Type: application/json
 ###
 
 // UPDATE A MEMBER'S CONTACT INFORMATION
-PUT http://localhost:5443/api/members/update/2
+PUT http://localhost:5443/api/members/update/1
 Content-Type: application/json
 
 {

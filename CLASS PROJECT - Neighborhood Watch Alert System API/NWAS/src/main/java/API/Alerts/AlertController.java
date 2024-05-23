@@ -1,8 +1,10 @@
 package API.Alerts;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -29,8 +31,13 @@ public class AlertController {
 
     // endpoint to create a custom safety alert
     @PostMapping("/add")
-    public Alert addCustomSafetyAlert(@RequestBody Alert alert) {
-        return alertService.createAlert(alert);
+    public ResponseEntity<Alert> addCustomSafetyAlert(@RequestBody Alert alert) {
+        try {
+            ResponseEntity<Alert> response = alertService.createAlert(alert);
+            return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to add custom safety alert");
+        }
     }
 
     // endpoint to update safety alert details
