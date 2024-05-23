@@ -9,8 +9,10 @@ Additionally, the API facilitates the management of safety alerts, including wea
 
 ## Base URL
 `http://localhost:5443/api`
+
 For alerts: `http://localhost:5443/api/alerts`
-For members: `http://localhost:5443/api/alerts`
+
+For members: `http://localhost:5443/api/members`
 
 ## Endpoints
 
